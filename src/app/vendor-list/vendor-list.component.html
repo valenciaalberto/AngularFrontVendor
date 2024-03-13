@@ -1,0 +1,39 @@
+<h1>Vendor List</h1>
+<div *ngIf="showError" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Alert!</strong> {{errorMessage}}
+    <button type="button" (click)="hideError()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>address</th>
+            <th>Service</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <div *ngIf="!isLoading; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <tr *ngFor="let vendor of vendors">
+                <td>{{vendor.id}}</td>
+                <td>{{vendor.name}}</td>
+                <td>{{vendor.address}}</td>
+                <td>{{vendor.service}}</td>
+                <td>{{vendor.phone}}</td>
+                <td>{{vendor.email}}</td>
+            </tr>
+        </ng-template>
+        <ng-template #elseBlock>
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div class="spinner-border text-dark" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </tbody>
+</table>
