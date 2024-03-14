@@ -34,7 +34,7 @@ export class VendorListComponent implements OnInit {
       },
       error : err => {
         console.error(err);
-        this.errorMessage = err.message;
+        this.errorMessage = err.name;
         this.showError = true;
 
       },
@@ -42,5 +42,7 @@ export class VendorListComponent implements OnInit {
         console.log("promise complete");
       }
     });
+
+
   }
 }
