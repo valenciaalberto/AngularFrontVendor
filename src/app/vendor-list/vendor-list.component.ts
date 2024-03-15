@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Vendor } from '../vendor';
 import { CommonModule } from '@angular/common';
 import { VendorServiceService } from '../vendor-service.service';
-
+import { Router } from '@angular/router';
+import { error } from 'console';
+import { combineLatest } from 'rxjs';
 @Component({
   selector: 'app-vendor-list',
   standalone: true,
@@ -17,16 +19,21 @@ export class VendorListComponent implements OnInit {
   showError:boolean = false;
   errorMessage:string;
 
-  constructor(private service:VendorServiceService){}
+  constructor(private service:VendorServiceService, private router:Router){}
 
   public hideError(){
     this.showError = false;
   }
 
   ngOnInit(): void {
-
-    this.isLoading = true;
     
+    this.isLoading = true;
+    this.getVendorList();
+
+  }
+
+  getVendorList(){
+
     this.service.getVendorList().subscribe({
       next : response => {
         this.vendors = response;
@@ -43,6 +50,25 @@ export class VendorListComponent implements OnInit {
       }
     });
 
+  }
 
+
+  goToUpdateView(vendorId:number){
+    this.router.navigate(['/update-vendor', vendorId]);
+  }
+
+  deleteRecord(vendorId:number){
+    this.service.deleteVendor(vendorId).subscribe({
+      next:(value) => {
+        this.router.navigate(['']);
+      },
+      error : error => {
+        console.error("handle error");
+      },
+      complete : () =>{
+        console.log("delete promise complete");
+        this.getVendorList();
+      }
+    })
   }
 }

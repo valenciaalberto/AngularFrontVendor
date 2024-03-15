@@ -1,5 +1,5 @@
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center">Vendor Register</h3>
+    <h3 class="text-center">Vendor Update</h3>
     <form (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label>Name:</label>
@@ -7,7 +7,7 @@
                 type="text" 
                 class="form-control" 
                 id = "name" 
-                [(ngModel)]="ven.name"
+                [(ngModel)]="currentVendor.name"
                 name = "name"
                 >
         </div>
@@ -17,7 +17,7 @@
                 type="text" 
                 class="form-control" 
                 id = "address" 
-                [(ngModel)]="ven.address"
+                [(ngModel)]="currentVendor.address"
                 name = "address"
                 >
         </div>
@@ -27,7 +27,7 @@
                 type="text" 
                 class="form-control" 
                 id = "service" 
-                [(ngModel)]="ven.service"
+                [(ngModel)]="currentVendor.service"
                 name = "service"
                 >
         </div>
@@ -39,7 +39,7 @@
                 id = "phone"
                 data-mdb-input-mask="+48 999-999-999"
                 data-inputmask="'alias': 'phone', 'groupSeparator': ','"
-                [(ngModel)]="ven.phone"
+                [(ngModel)]="currentVendor.phone"
                 name = "phone"
                 >
             <small class="text-muted">e.g "888,444,2222"</small>
@@ -50,15 +50,15 @@
                 type="email" 
                 class="form-control" 
                 id = "email" 
-                [(ngModel)]="ven.email"
+                [(ngModel)]="currentVendor.email"
                 name = "email"
                 >
         </div>
 
-        <button *ngIf="!isLoading" class="btn btn-success mt-n1">{{messageButton}}</button>
-        <button *ngIf="isLoading"  class="btn btn-success mt-n1" type="button" disabled>
+        <button *ngIf="!isLoading" class="btn btn-success mt-1">{{buttonMessage}}</button>
+        <button *ngIf="isLoading"  class="btn btn-success mt-1" type="button" disabled>
             <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            {{messageButton}}
+            {{buttonMessage}}
         </button>
     </form>
 </div>

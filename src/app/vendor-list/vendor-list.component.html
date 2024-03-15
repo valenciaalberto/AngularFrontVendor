@@ -13,6 +13,7 @@
             <th>Service</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,10 @@
                 <td>{{vendor.service}}</td>
                 <td>{{vendor.phone}}</td>
                 <td>{{vendor.email}}</td>
+                <td>
+                    <button (click)="goToUpdateView(vendor.id)" class="btn btn-info m-1">Update</button>
+                    <button (click)="deleteRecord(vendor.id)" class="btn btn-danger ms-1" disabled>Delete</button>
+                </td>
             </tr>
         </ng-template>
         <ng-template #elseBlock>
